@@ -4,18 +4,28 @@
 
 # Sentence-BERT について
 
-Sentence-BERT は大学の研究室 PC を用いて実行している。
+## 計算手順
 
-(松井さんに聞く必要がある。)
+### 1. アウトソーシングで集計したデータをから Sentence-BERT の J-E スコアを算出する
 
-使用したモデルは「[paraphrase-multilingual-mpnet-base-v2](https://www.sbert.net/docs/pretrained_models.html#:~:text=paraphrase%2D-,multilingual,-%2Dmpnet%2Dbase%2Dv2)」
+大学の研究室 PC を用いて実行しているため松井さんに聞く必要がある。
 
-元論文:[Making Monolingual Sentence Embeddings Multilingual using
-Knowledge Distillation](https://arxiv.org/pdf/2004.09813.pdf)
+- アウトソーシングで集計したデータ:[base.csv](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/data/base.csv)
+
+- Sentence-BERT の J-E スコア:[アウトソーシング検証用データ.txt(2 行目)](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/%E3%82%A2%E3%82%A6%E3%83%88%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E6%A4%9C%E8%A8%BC%E7%94%A8%E3%83%87%E3%83%BC%E3%82%BF.txt#L2)
+
+- 使用したモデルは「[paraphrase-multilingual-mpnet-base-v2](https://www.sbert.net/docs/pretrained_models.html#:~:text=paraphrase%2D-,multilingual,-%2Dmpnet%2Dbase%2Dv2)」
+
+> 元論文:[Making Monolingual Sentence Embeddings Multilingual using
+> Knowledge Distillation](https://arxiv.org/pdf/2004.09813.pdf)
+
+### 2.
 
 # ROC,AUC 計算コード
 
-自分は[GoogleColab](https://colab.research.google.com/)で実装していました。
+自分は[GoogleColab](https://colab.research.google.com/)で計算していました。
+
+`test_y = []`には[各採点基準 ①②③④ の 01 の値](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/%E3%82%A2%E3%82%A6%E3%83%88%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E6%A4%9C%E8%A8%BC%E7%94%A8%E3%83%87%E3%83%BC%E3%82%BF.txt#L8)を、 `predict_y = []`には[J-Esocore](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/%E3%82%A2%E3%82%A6%E3%83%88%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E6%A4%9C%E8%A8%BC%E7%94%A8%E3%83%87%E3%83%BC%E3%82%BF.txt#L2)を入れる。
 
 ```python
 from sklearn import metrics
