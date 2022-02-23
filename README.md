@@ -19,9 +19,16 @@
 > 元論文:[Making Monolingual Sentence Embeddings Multilingual using
 > Knowledge Distillation](https://arxiv.org/pdf/2004.09813.pdf)
 
-### 2.
+### 2. 3 つの項目で採点を行う
 
-# ROC,AUC 計算コード
+- ラベル(文法、意味、スペル)
+- 採点フラグ:[~/sentencebert/アウトソーシング検証用データ.csv](Hand_over_materials_NLP_LAB/sentencebert/アウトソーシング検証用データ.csv)
+
+### 3. ROCAUC 計算を行う
+
+- [~/roc 計算用コード.py](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/roc%E8%A8%88%E7%AE%97%E7%94%A8%E3%82%B3%E3%83%BC%E3%83%89.py)
+
+**ROC,AUC 計算コードの説明**
 
 自分は[GoogleColab](https://colab.research.google.com/)で計算していました。
 
@@ -51,3 +58,14 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.grid(True)
 ```
+
+### 4. 採点基準ごとに適合率、再現率、F 値を計算
+
+- 最適な閾値を算出するために、[開発用データ 250 問](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/%E3%82%A2%E3%82%A6%E3%83%88%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E6%A4%9C%E8%A8%BC%E7%94%A8%E3%83%87%E3%83%BC%E3%82%BF250%E5%89%8D%E5%8D%8A.csv)、[検証用データ 250 問](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/%E3%82%A2%E3%82%A6%E3%83%88%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%B3%E3%82%B0%E6%A4%9C%E8%A8%BC%E7%94%A8%E3%83%87%E3%83%BC%E3%82%BF250%E5%BE%8C%E5%8D%8A.csv)に分けた。
+
+- 開発用データ 250 問を用いて、不正解文についての F 値が最大になるときの閾値を求めたら、検証用データ 250 問を検証する。
+
+**検証実行手順**
+
+1. [sentencebert/sentencebert.py](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/sentencebert.py)を実行する
+2. [40 行目](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/sentencebert.py#L40)の L111,L110,L011,L010 を設定することで採点基準ごとに検証できる
