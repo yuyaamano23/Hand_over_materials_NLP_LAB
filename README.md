@@ -8,7 +8,7 @@
 
 ### ① アウトソーシングで集計したデータをから Sentence-BERT の J-E スコアを算出する
 
-大学の研究室 PC を用いて実行しているため松井さんに聞く必要がある。
+多言語に対応した「[Sentence-BERTモデル](https://github.com/Souta-m/sentence-transformers)」は大学の研究室 PC を用いて実行している。
 
 - アウトソーシングで集計したデータ:[base.csv](https://github.com/yuyaamano23/Hand_over_materials_NLP_LAB/blob/main/sentencebert/data/base.csv)
 
